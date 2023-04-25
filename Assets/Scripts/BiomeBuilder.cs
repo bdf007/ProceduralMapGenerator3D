@@ -38,6 +38,11 @@ public class BiomeBuilder : MonoBehaviour
         texture.Apply();
         return texture;
     }
+
+    public Biome GetBiome(TerrainType heatMatType, TerrainType moistureMapType)
+    {
+        return biomeRows[moistureMapType.index].biomes[heatMatType.index];
+    }
 }
 
 [System.Serializable]
