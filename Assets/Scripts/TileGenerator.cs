@@ -10,6 +10,9 @@ public class TileGenerator : MonoBehaviour
     public float maxHeight = 1.0f;
     public int textureResolution = 1;
 
+    [HideInInspector]
+    public Vector2 offset;
+
     [Header("terrain type")]
     public TerrainType[] heightTerrainTypes;
 
