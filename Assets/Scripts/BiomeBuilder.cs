@@ -2,9 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BiomeType
+{
+    Desert,
+    Tundra,
+    Savanna,
+    Forest,
+    RainForest
+}
+
 public class BiomeBuilder : MonoBehaviour
 {
-    public BiomeRow[] biomeRows;
+    public Biome[] biomes;
+    public BiomeRow[] tableRows;
 
     public static BiomeBuilder Instance;
 
@@ -13,9 +23,9 @@ public class BiomeBuilder : MonoBehaviour
         Instance = this;
     }
 
-    public Texture2D BuildTexture(TerrainType[,] heatMatTypes, TerrainType[,] moistureMapTypes)
+    public Texture2D BuildTexture(TerrainType[,] heatMapTypes, TerrainType[,] moistureMapTypes)
     {
-        int size = heatMatTypes.GetLength(0);
+        int size = heatMapTypes.GetLength(0);
         Color[] pixels = new Color[size * size];
 
         for(int x = 0; x < size; x++)
@@ -23,10 +33,18 @@ public class BiomeBuilder : MonoBehaviour
             for(int z = 0; z < size; z++)
             {
                 int index = (x * size) + z;
-                int heatIndex = heatMatTypes[x, z].index;
-                int moistureIndex = moistureMapTypes[x, z].index;
+                int heatMapIndex = heatMapTypes[x, z].index;
+                int moistureMapIndex = moistureMapTypes[x, z].index;
 
-                Biome biome = biomeRows[moistureIndex].biomes[heatIndex];
+                Biome biome = null;
+                foreach(Biome b in biomes)
+                {
+                    if(b.type == tableRows[moistureMapIndex].tablesColums[heatMapIndex])
+                    {
+                        biome = b;
+                        break;
+                    }
+                }
                 pixels[index] = biome.color;
             }
         }
@@ -39,22 +57,36 @@ public class BiomeBuilder : MonoBehaviour
         return texture;
     }
 
-    public Biome GetBiome(TerrainType heatMatType, TerrainType moistureMapType)
+    public Biome GetBiome(TerrainType heatTerrainType, TerrainType moistureTerrainType)
     {
-        return biomeRows[moistureMapType.index].biomes[heatMatType.index];
+        foreach (Biome b in biomes)
+        {
+            if (b.type == tableRows[moistureTerrainType.index].tablesColums[heatTerrainType.index])
+            {
+                return b;
+            }
+        }
+
+        return null;
+
     }
 }
 
 [System.Serializable]
 public class BiomeRow
 {
-    public Biome[] biomes;
+    public BiomeType[] tablesColums;
 }
 
 
 [System.Serializable]
 public class Biome
 {
-    public string name;
+    public BiomeType type;
     public Color color;
+    public bool spanwPrefabs;
+    public GameObject[] spawnablePrefabs;
+    [Range(0.0f, 3.0f)]
+    public float density = 1.0f;
+
 }
