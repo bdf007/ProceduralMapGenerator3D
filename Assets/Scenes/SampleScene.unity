@@ -294,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.50559014, y: -0, z: -0, w: 0.86277384}
-  m_LocalPosition: {x: 5.43, y: 5.32, z: 1.12}
+  m_LocalPosition: {x: 5.43, y: 8.629, z: 0.215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -364,6 +364,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noiseSampleSize: 30
-  scale: 5
-  maxHeight: 3
-  textureResolution: 8
+  scale: 10
+  maxHeight: 5
+  textureResolution: 32
+  heightTerrainTypes:
+  - threshold: 0.25
+    color: {r: 0.100302614, g: 0.5720097, b: 0.9245283, a: 1}
+  - threshold: 0.28
+    color: {r: 0.8679245, g: 0.7783925, b: 0.08597365, a: 1}
+  - threshold: 0.8
+    color: {r: 0.063412234, g: 0.8962264, b: 0.24311213, a: 1}
+  - threshold: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
