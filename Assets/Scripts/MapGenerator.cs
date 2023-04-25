@@ -8,6 +8,11 @@ public class MapGenerator : MonoBehaviour
     public int numX = 2;
     public int numZ = 2;
 
+    private void Start()
+    {
+        GenerateTiles();
+    }
+
     void GenerateTiles()
     {
         float tileSize = tilePrefab.GetComponent<MeshGenerator>().xSize;
