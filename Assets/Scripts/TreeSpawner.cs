@@ -16,7 +16,7 @@ public class TreeSpawner : MonoBehaviour
     public void Spawn(TerrainData[,] dataMap)
     {
         int size = dataMap.GetLength(0);
-
+        
         for( int x =0; x < size; x++ )
         {
             for (int z = 0; z < size; z++)
@@ -63,4 +63,5 @@ public class TreeSpawner : MonoBehaviour
             treeObj.transform.position = new Vector3(hit.point.x, hit.point.y - 0.02f, hit.point.z);
         }
     }
+
 }
