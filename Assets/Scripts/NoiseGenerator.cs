@@ -8,7 +8,7 @@ public class NoiseGenerator
     // return a 2D array of floats
     public static float[,] GenerateNoiseMap(int noiseSampleSize, float scale)
     {
-        float[,] noisMap = new float[noiseSampleSize, noiseSampleSize];
+        float[,] noiseMap = new float[noiseSampleSize, noiseSampleSize];
 
         for(int x = 0; x < noiseSampleSize; x++)
         {
@@ -16,10 +16,10 @@ public class NoiseGenerator
             {
                 float samplePosX = (float)x / scale;
                 float samplePosY = (float)y / scale;
-                noisMap[x, y] = Mathf.PerlinNoise(samplePosX, samplePosY);
+                noiseMap[x, y] = Mathf.PerlinNoise(samplePosX, samplePosY);
             }
         }
 
-        return noisMap;
+        return noiseMap;
     }
 }

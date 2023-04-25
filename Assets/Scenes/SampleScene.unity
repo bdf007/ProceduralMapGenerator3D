@@ -363,5 +363,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d207d28656bc4a54297a0ad24b106907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noisSampleSize: 0
-  scale: 0
+  noiseSampleSize: 30
+  scale: 1.1
