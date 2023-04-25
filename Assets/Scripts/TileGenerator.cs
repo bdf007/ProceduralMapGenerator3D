@@ -60,5 +60,5 @@ public class TerrainType
 {
     [Range(0.0f, 1.0f)]
     public float threshold;
-    public Color color;
+    public Gradient colorGradient;
 }

@@ -22,11 +22,14 @@ public class TextureBuilder
                 int index = (x * pixelLength) + z;
                 //pixels[index] = Color.Lerp(Color.black, Color.white, noiseMap[x, z]);
 
-                foreach(TerrainType terrainType in terrainTypes)
+                for(int t = 0; t < terrainTypes.Length; t++)
                 {
-                    if (noiseMap[x, z] <= terrainType.threshold)
+                    if (noiseMap[x, z] < terrainTypes[t].threshold)
                     {
-                        pixels[index] = terrainType.color;
+                        float minVal = t == 0 ? 0 : terrainTypes[t - 1].threshold;
+                        float maxVal = terrainTypes[t].threshold;
+
+                        pixels[index] = terrainTypes[t].colorGradient.Evaluate(1.0f - (maxVal - noiseMap[x, z]) / (maxVal - minVal));
                         break;
                     }
                 }
